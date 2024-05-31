@@ -9,7 +9,6 @@ import java.util.function.Supplier;
 public class Riviste extends ElementoCatalogo {
     public static Supplier<Riviste> randomicMagazine = () -> {
         Faker faker = new Faker();
-
         String ISBN = faker.code().isbn13();
         String titolo = faker.book().title();
         int annoPubblicazione = faker.number().numberBetween(1700, 2024);
@@ -27,8 +26,8 @@ public class Riviste extends ElementoCatalogo {
     }
 
     public static void addMagazineManually(Scanner scanner) {
-        System.out.println("Inserisci ISBN");
-        String ISBN = scanner.nextLine();
+        Faker faker = new Faker();
+        String ISBN = faker.code().isbn13();
         System.out.println("Inserisci titolo");
         String titolo = scanner.nextLine();
         System.out.println("Inserisci anno di pubblicazione");
@@ -38,7 +37,6 @@ public class Riviste extends ElementoCatalogo {
         int numeroPagine = scanner.nextInt();
         System.out.println("Inserisci periodicità ( SETTIMANALE, MENSILE, SEMESTRALE ):");
         Periodicità periodicità = Periodicità.valueOf(scanner.nextLine().toUpperCase());
-        ;
         Catalogo.addElemento(new Riviste(ISBN, titolo, annoPubblicazione, numeroPagine, periodicità));
         System.out.println("Rivista aggiunta con successo");
     }
@@ -54,7 +52,7 @@ public class Riviste extends ElementoCatalogo {
 
     @Override
     public String toString() {
-        return "Rivista: " + super.toString() + ", " +
-                "Periodicità= " + periodicità;
+        return "Rivista: " + super.toString() +
+                ", Periodicità: " + periodicità;
     }
 }

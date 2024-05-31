@@ -27,8 +27,8 @@ public class Libri extends ElementoCatalogo {
     }
 
     public static void addBookManually(Scanner scanner) {
-        System.out.println("Inserisci ISBN");
-        String ISBN = scanner.nextLine();
+        Faker faker = new Faker();
+        String ISBN = faker.code().isbn13();
         System.out.println("Inserisci titolo");
         String titolo = scanner.nextLine();
         System.out.println("Inserisci anno di pubblicazione");
@@ -61,7 +61,7 @@ public class Libri extends ElementoCatalogo {
     @Override
     public String toString() {
         return "Libro: " + super.toString() +
-                "Autoreutore: " + autore + '\'' +
-                ", Genere: " + genere + '\'';
+                ", Autore: " + autore +
+                ", Genere: " + genere;
     }
 }
