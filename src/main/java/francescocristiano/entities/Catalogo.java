@@ -1,8 +1,14 @@
 package francescocristiano.entities;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Catalogo {
     public static List<ElementoCatalogo> elementi = new ArrayList<>();
@@ -177,10 +183,10 @@ public class Catalogo {
                         searchElement();
                         break;
                     case 4:
-                        System.out.println("Non ancora fatto");
+                        saveOnDisk();
                         break;
                     case 5:
-                        System.out.println("Non ancora fatto");
+                        caricaDaDisco();
                         break;
 
                     case 6:
@@ -191,6 +197,85 @@ public class Catalogo {
             } catch (NumberFormatException e) {
                 System.out.println("Scelta non valida");
             }
+        }
+    }
+
+    public static void saveOnDisk() {
+        File catalogoFile = new File("src/main/java/francescocristiano/files/Catalogo.txt");
+        try {
+            String catalogoString = elementi.stream()
+                    .map(Catalogo::elementoToLine)
+                    .collect(Collectors.joining(" " + System.lineSeparator()));
+
+            FileUtils.writeStringToFile(catalogoFile, catalogoString, StandardCharsets.UTF_8);
+
+            System.out.println();
+            System.out.println("Catalogo salvato con successo");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static String elementoToLine(ElementoCatalogo elemento) {
+        if (elemento instanceof Libri) {
+            Libri libro = (Libri) elemento;
+            return "Libro," + libro.getISBN() + "," + libro.getTitolo() + "," +
+                    libro.getAnnoPubblicazione() + "," + libro.getNumeroPagine() + "," +
+                    libro.getAutore() + "," + libro.getGenere();
+        } else if (elemento instanceof Riviste) {
+            Riviste rivista = (Riviste) elemento;
+            return "Rivista," + rivista.getISBN() + "," + rivista.getTitolo() + "," +
+                    rivista.getAnnoPubblicazione() + "," + rivista.getNumeroPagine() + "," +
+                    rivista.getPeriodicità();
+        } else {
+            return "";
+        }
+    }
+
+    public static void caricaDaDisco() {
+        File catalogoFile = new File("src/main/java/francescocristiano/files/Catalogo.txt");
+        try {
+            String catalogoString = FileUtils.readFileToString(catalogoFile, StandardCharsets.UTF_8);
+
+            String[] righe = catalogoString.split(System.lineSeparator());
+
+            List<ElementoCatalogo> nuoviElementi = new ArrayList<>();
+
+            for (String riga : righe) {
+                ElementoCatalogo elemento = lineToElemento(riga);
+                if (elemento != null) {
+                    nuoviElementi.add(elemento);
+                }
+            }
+
+            elementi = nuoviElementi;
+
+            System.out.println("Catalogo caricato con successo.");
+        } catch (IOException e) {
+            System.out.println("Errore durante il caricamento del catalogo: " + e.getMessage());
+        }
+    }
+
+    private static ElementoCatalogo lineToElemento(String line) {
+        String[] campi = line.split(",");
+
+        if (campi[0].equals("Libro")) {
+            String ISBN = campi[1];
+            String titolo = campi[2];
+            int annoPubblicazione = Integer.parseInt(campi[3]);
+            int numeroPagine = Integer.parseInt(campi[4]);
+            String autore = campi[5];
+            String genere = campi[6];
+            return new Libri(ISBN, titolo, annoPubblicazione, numeroPagine, autore, genere);
+        } else if (campi[0].equals("Rivista")) {
+            String ISBN = campi[1];
+            String titolo = campi[2];
+            int annoPubblicazione = Integer.parseInt(campi[3]);
+            int numeroPagine = Integer.parseInt(campi[4]);
+            Periodicità periodicità = Periodicità.valueOf(campi[5].trim());
+            return new Riviste(ISBN, titolo, annoPubblicazione, numeroPagine, periodicità);
+        } else {
+            return null;
         }
     }
 
