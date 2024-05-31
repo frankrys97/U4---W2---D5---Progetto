@@ -73,13 +73,15 @@ public class Catalogo {
 
     public static void removeByISBN() {
         if (!elementi.isEmpty()) {
-            elementi.forEach(System.out::println);
+            System.out.println();
             System.out.println("Inserisci ISBN dell' elemento da rimuovere");
             String ISBN = scanner.nextLine();
             elementi.removeIf(elemento -> elemento.getISBN().equals(ISBN));
             System.out.println("Elemento rimosso con successo");
+            System.out.println();
         } else {
             System.out.println("Non ci sono elementi da rimuovere");
+            System.out.println();
         }
 
     }
@@ -95,29 +97,38 @@ public class Catalogo {
             case 1:
                 System.out.println("Inserisci ISBN");
                 String ISBN = scanner.nextLine();
-                ElementoCatalogo elementoTrovato = searchByISBN(ISBN);
-                if (elementoTrovato != null) {
-                    System.out.println(elementoTrovato);
+                searchByISBN(ISBN);
+                System.out.println();
+                if (searchByISBN(ISBN) != null) {
+
+                    System.out.println(searchByISBN(ISBN));
+                    System.out.println();
                 } else {
                     System.out.println("Elemento non trovato");
+                    System.out.println();
                 }
                 break;
             case 2:
                 System.out.println("Inserisci anno di pubblicazione");
                 int annoPubblicazione = Integer.parseInt(scanner.nextLine());
-                List<ElementoCatalogo> elementiTrovati = searchByYear(annoPubblicazione);
-                if (!elementiTrovati.isEmpty()) {
-                    elementiTrovati.forEach(System.out::println);
+                searchByYear(annoPubblicazione);
+                System.out.println();
+                if (!searchByYear(annoPubblicazione).isEmpty()) {
+                    System.out.println("Elementi trovati: ");
+                    searchByYear(annoPubblicazione).forEach(System.out::println);
                 } else {
                     System.out.println("Elemento non trovato");
+                    System.out.println();
                 }
                 break;
             case 3:
                 System.out.println("Inserisci autore");
                 String autore = scanner.nextLine();
-                List<ElementoCatalogo> elementiTrovati2 = searchByAuthor(autore);
-                if (!elementiTrovati2.isEmpty()) {
-                    elementiTrovati2.forEach(System.out::println);
+                searchByAuthor(autore);
+                System.out.println();
+                if (!searchByAuthor(autore).isEmpty()) {
+                    System.out.println("Elementi trovati: ");
+                    searchByAuthor(autore).forEach(System.out::println);
                 } else {
                     System.out.println("Elemento non trovato");
                 }
@@ -133,20 +144,22 @@ public class Catalogo {
             elementi.add(Riviste.randomicMagazine.get());
         }
 
-        System.out.println();
-
-        System.out.println("Questa è la nostra libreria: ");
-
-        elementi.forEach(System.out::println);
-
-        System.out.println();
-
 
         while (true) {
+
+            System.out.println();
+
+            System.out.println("Questa è la nostra libreria: ");
+
+            elementi.forEach(System.out::println);
+
+            System.out.println();
+
+
             System.out.println("Scegli un'opzione: ");
             System.out.println("1. Aggiungi elemento");
             System.out.println("2. Rimuovi elemento");
-            System.out.println("3. Cercare elemento");
+            System.out.println("3. Cerca elemento");
             System.out.println("4. Salva su disco");
             System.out.println("5. Carica da disco");
             System.out.println("6. Esci");

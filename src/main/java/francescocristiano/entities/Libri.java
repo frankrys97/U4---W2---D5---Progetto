@@ -13,7 +13,9 @@ public class Libri extends ElementoCatalogo {
         String titolo = faker.book().title();
         int annoPubblicazione = faker.number().numberBetween(1700, 2024);
         int numeroPagine = faker.number().numberBetween(1, 1000);
-        String autore = faker.book().author();
+        /* String autore = faker.book().author();*/
+        // Alla fine ha vinto la fantasia
+        String autore = faker.harryPotter().character();
         String genere = faker.book().genre();
         return new Libri(ISBN, titolo, annoPubblicazione, numeroPagine, autore, genere);
     };
