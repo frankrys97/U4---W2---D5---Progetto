@@ -186,7 +186,7 @@ public class Catalogo {
                         saveOnDisk();
                         break;
                     case 5:
-                        caricaDaDisco();
+                        loadOnDisk();
                         break;
 
                     case 6:
@@ -203,6 +203,7 @@ public class Catalogo {
     public static void saveOnDisk() {
         File catalogoFile = new File("src/main/java/francescocristiano/files/Catalogo.txt");
         try {
+            // Trasformo l'array di partenza in una stringa
             String catalogoString = elementi.stream()
                     .map(Catalogo::elementoToLine)
                     .collect(Collectors.joining(" " + System.lineSeparator()));
@@ -217,6 +218,8 @@ public class Catalogo {
     }
 
     private static String elementoToLine(ElementoCatalogo elemento) {
+        // Tramite questa funzione riesco a convertire l'elemento del catalago in una riga che poi andrò a pushare con il save
+        // all'interno del file di testo
         if (elemento instanceof Libri) {
             Libri libro = (Libri) elemento;
             return "Libro," + libro.getISBN() + "," + libro.getTitolo() + "," +
@@ -232,14 +235,21 @@ public class Catalogo {
         }
     }
 
-    public static void caricaDaDisco() {
+    public static void loadOnDisk() {
         File catalogoFile = new File("src/main/java/francescocristiano/files/Catalogo.txt");
         try {
-            String catalogoString = FileUtils.readFileToString(catalogoFile, StandardCharsets.UTF_8);
 
+            if (!catalogoFile.exists()) {
+                System.out.println("Il catalogo non esiste");
+                return;
+            }
+            String catalogoString = FileUtils.readFileToString(catalogoFile, StandardCharsets.UTF_8);
+            // Splitto la stringa ricevuta, già formattata dal save in modo a me conveniente, in un array di stringhe
             String[] righe = catalogoString.split(System.lineSeparator());
 
+
             List<ElementoCatalogo> nuoviElementi = new ArrayList<>();
+            // Creo una nuova lista in cui poi andrò ad inserire i nuovi elementi
 
             for (String riga : righe) {
                 ElementoCatalogo elemento = lineToElemento(riga);
@@ -257,6 +267,8 @@ public class Catalogo {
     }
 
     private static ElementoCatalogo lineToElemento(String line) {
+
+        // Con questo riesco a splittare la stringa di linee ricevuta in un array di elementi divisi dalla virgola
         String[] campi = line.split(",");
 
         if (campi[0].equals("Libro")) {

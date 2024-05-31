@@ -5,6 +5,5 @@ Rivista,9780852506639,Françoise Sagan,1721,534,SETTIMANALE
 Libro,9791666550312,The Needle's Eye,1781,319,Severus Snape,Science fiction 
 Rivista,9781883024604,The Heart Is Deceitful Above All Things,1935,49,SETTIMANALE 
 Libro,9781863264389,When the Green Woods Laugh,1771,130,Augustus Rookwood,Mythopoeia 
-Rivista,9790319620051,A Time of Gifts,1997,759,MENSILE 
-Libro,9781884187490,The Wings of the Dove,1764,85,Padma Patil,Reference book 
-Rivista,9790986010957,If Not Now, When?,1923,958,SEMESTRALE
+Rivista,9790319620051,A Time of Gifts,1997,759,MENSILE
+Libro,9781865554389,When the Green Woods Laugh,1771,130,Augustus Rookwood,Mythopoeia
