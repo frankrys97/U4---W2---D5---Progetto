@@ -3,6 +3,7 @@ package francescocristiano.entities;
 import com.github.javafaker.Faker;
 
 import java.util.Random;
+import java.util.Scanner;
 import java.util.function.Supplier;
 
 public class Riviste extends ElementoCatalogo {
@@ -25,9 +26,35 @@ public class Riviste extends ElementoCatalogo {
         this.periodicità = periodicità;
     }
 
+    public static void addMagazineManually(Scanner scanner) {
+        System.out.println("Inserisci ISBN");
+        String ISBN = scanner.nextLine();
+        System.out.println("Inserisci titolo");
+        String titolo = scanner.nextLine();
+        System.out.println("Inserisci anno di pubblicazione");
+        int annoPubblicazione = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Inserisci numero di pagine");
+        int numeroPagine = scanner.nextInt();
+        System.out.println("Inserisci periodicità ( SETTIMANALE, MENSILE, SEMESTRALE ):");
+        Periodicità periodicità = Periodicità.valueOf(scanner.nextLine().toUpperCase());
+        ;
+        Catalogo.addElemento(new Riviste(ISBN, titolo, annoPubblicazione, numeroPagine, periodicità));
+        System.out.println("Rivista aggiunta con successo");
+    }
+
+    public static void addMagazineRandom() {
+        Catalogo.addElemento(Riviste.randomicMagazine.get());
+        System.out.println("Rivista generata ed aggiunta con successo");
+    }
+
     public Periodicità getPeriodicità() {
         return periodicità;
     }
 
-
+    @Override
+    public String toString() {
+        return "Rivista: " + super.toString() + ", " +
+                "Periodicità= " + periodicità;
+    }
 }
