@@ -106,7 +106,7 @@ public class Catalogo {
                 searchByISBN(ISBN);
                 System.out.println();
                 if (searchByISBN(ISBN) != null) {
-
+                    System.out.println("Elementi trovati:");
                     System.out.println(searchByISBN(ISBN));
                     System.out.println();
                 } else {
