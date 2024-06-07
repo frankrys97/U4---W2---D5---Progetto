@@ -1,9 +1,11 @@
-Libro,9780741362155,The Parliament of Man,1867,576,Nearly Headless Nick,Fanfiction 
-Rivista,9781999342937,Vanity Fair,1842,385,SETTIMANALE 
-Libro,9780969204824,If I Forget Thee Jerusalem,1917,56,Albus Dumbledore,Essay 
-Rivista,9780852506639,Françoise Sagan,1721,534,SETTIMANALE 
-Libro,9791666550312,The Needle's Eye,1781,319,Severus Snape,Science fiction 
-Rivista,9781883024604,The Heart Is Deceitful Above All Things,1935,49,SETTIMANALE 
-Libro,9781863264389,When the Green Woods Laugh,1771,130,Augustus Rookwood,Mythopoeia 
-Rivista,9790319620051,A Time of Gifts,1997,759,MENSILE
-Libro,9781865554389,When the Green Woods Laugh,1771,130,Augustus Rookwood,Mythopoeia
+Libro,9780894591105,Wildfire at Midnight,1921,149,Yaxley,Fantasy 
+Rivista,9781533713568,Fame Is the Spur,1970,636,SEMESTRALE 
+Libro,9780949384966,The Yellow Meads of Asphodel,1903,844,Hokey,Classic 
+Rivista,9790864052246,The Other Side of Silence,2023,614,MENSILE 
+Libro,9781952288746,The Wives of Bath,1842,693,Narcissa Malfoy,Tall tale 
+Rivista,9781094946764,Surprised by Joy,1770,20,SEMESTRALE 
+Libro,9791615500924,Terrible Swift Sword,1950,584,Katie Bell,Fairy tale 
+Rivista,9790071341676,Behold the Man,1985,811,MENSILE 
+Rivista,9780942450767,For Whom the Bell Tolls,1981,178,MENSILE 
+Libro,9780881497489,Down to a Sunless Sea,1791,245,Graham Montague,Fable
+Rivista,9780945850767,Ciao,1981,178,MENSILE

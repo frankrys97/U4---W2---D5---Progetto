@@ -31,10 +31,10 @@ public class Riviste extends ElementoCatalogo {
         System.out.println("Inserisci titolo");
         String titolo = scanner.nextLine();
         System.out.println("Inserisci anno di pubblicazione");
-        int annoPubblicazione = scanner.nextInt();
+        int annoPubblicazione = Integer.parseInt(scanner.nextLine());
         scanner.nextLine();
         System.out.println("Inserisci numero di pagine");
-        int numeroPagine = scanner.nextInt();
+        int numeroPagine = Integer.parseInt(scanner.nextLine());
         System.out.println("Inserisci periodicità ( SETTIMANALE, MENSILE, SEMESTRALE ):");
         Periodicità periodicità = Periodicità.valueOf(scanner.nextLine().toUpperCase());
         Catalogo.addElemento(new Riviste(ISBN, titolo, annoPubblicazione, numeroPagine, periodicità));
